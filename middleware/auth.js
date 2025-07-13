@@ -1,4 +1,4 @@
-/* // middleware/auth.js
+// middleware/auth.js
 const jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
@@ -17,9 +17,9 @@ module.exports = function(req, res, next) {
     return res.status(401).json({ error: 'Unauthorized - Invalid token' });
   }
 };
- */
 
-const router = require('express').Router();
+
+/* const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -55,4 +55,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = router; */

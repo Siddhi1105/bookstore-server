@@ -9,10 +9,7 @@ const authMiddleware = require('./middleware/auth');
 
 dotenv.config();
 const app = express();
-app.use(cors({
-  origin: 'https://your-netlify-app.netlify.app', // frontend URL
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 
