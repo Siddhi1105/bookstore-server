@@ -9,7 +9,15 @@ const authMiddleware = require('./middleware/auth');
 
 dotenv.config();
 const app = express();
-app.use(cors());
+/* app.use(cors()); */
+const allowed = ['http://localhost:3000', 'https://bookstore-sidhi-nanaware.netlify.app'];
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowed.includes(origin)) return cb(null, true);
+    cb(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
 
 app.use(express.json());
 
@@ -24,6 +32,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use('/auth', authRoutes);
 app.use('/products', authMiddleware, productRoutes);
 app.use('/wishlist', authMiddleware, wishlistRoutes);
+
 
 mongoose.connection.on('connected', () => {
   console.log(`✅ MongoDB connected to DB: ${mongoose.connection.name}`);
